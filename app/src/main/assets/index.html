@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fintech Pro - Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-[#0f0f0f] text-white font-['Inter'] h-screen flex flex-col items-center justify-center overflow-hidden">
+
+    <!-- Splash/Login Container -->
+    <div id="login-screen" class="w-full max-w-md px-8 text-center animate-fade-in">
+        <div class="mb-12">
+            <div class="w-20 h-20 bg-[#ff1f3d] rounded-2xl mx-auto flex items-center justify-center shadow-[0_0_30px_rgba(255,31,61,0.3)] mb-6">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wallet"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg>
+            </div>
+            <h1 class="text-4xl font-bold tracking-tight mb-2">Fintech<span class="text-[#ff1f3d]">Pro</span></h1>
+            <p class="text-gray-400 text-sm">Manage your finances with precision.</p>
+        </div>
+
+        <div class="space-y-4">
+            <button id="google-login" class="w-full bg-white text-black font-semibold py-4 rounded-xl flex items-center justify-center gap-3 transition-transform active:scale-95">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chrome"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="21.17" x2="12" y1="8" y2="8"/><line x1="3.95" x2="8.54" y1="6.06" y2="14"/><line x1="10.88" x2="15.46" y1="21.94" y2="14"/></svg>
+                Continue with Google
+            </button>
+            <p class="text-xs text-gray-500 px-4">By continuing, you agree to our Terms of Service and Privacy Policy.</p>
+        </div>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        // Check if already logged in
+        document.addEventListener('DOMContentLoaded', () => {
+            if (Auth.isAuthenticated()) {
+                window.location.href = 'dashboard.html';
+            }
+        });
+
+        document.getElementById('google-login').addEventListener('click', () => {
+            // Mock Google Login
+            Auth.login({
+                name: 'John Doe',
+                email: 'john.doe@example.com',
+                photo: 'https://picsum.photos/seed/user/100/100'
+            });
+            window.location.href = 'dashboard.html';
+        });
+    </script>
+</body>
+</html>
